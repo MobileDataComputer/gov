@@ -53,8 +53,7 @@ const categories = ref([
 }
 
 .routes-container {
-	margin-top: 3rem;
-	height: 100%;
+	margin-top: 3rem;;
 	width: 100%;
 	display: flex;
 	flex-direction: column;

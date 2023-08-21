@@ -1,12 +1,13 @@
 <template>
   	<div id="navBar">
-    	<div>
+    	<div class="contents">
 			<div class="seal-container">
 				<div class="seal-border">
 					<div id="seal"></div>
 				</div>
 			</div>
 			<NavBarRoutes></NavBarRoutes>
+			<NavbarAccount></NavbarAccount>
 		</div>
   	</div>
 </template>
@@ -14,6 +15,7 @@
 <script setup lang="ts">
 
 import NavBarRoutes from "@/components/NavBarRoutes.vue";
+import NavbarAccount from "@/components/NavbarAccount.vue";
 </script>
 
 <style scoped lang="scss">
@@ -21,9 +23,11 @@ import NavBarRoutes from "@/components/NavBarRoutes.vue";
   	display: flex;
   	min-width: 20rem;
 	max-width: 25%;
-  	height: 83%;
+  	height: 100%;
 	padding: 2.3rem 1.5rem 2.3rem 1.5rem;
-	div {
+	.contents {
+		display: flex;
+		flex-direction: column;
 		background-color: #1E1E2D;
 		height: 100%;
 		width: 100%;
@@ -59,6 +63,5 @@ import NavBarRoutes from "@/components/NavBarRoutes.vue";
 			}
 		}
 	}
-
 }
 </style>
