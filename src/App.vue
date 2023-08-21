@@ -1,6 +1,6 @@
 <template>
   <v-app class="main">
-    <NavbarComp v-if="$route.path !== '/signin'" app />
+<!--    <NavbarComp v-if="$route.path !== '/signin'" app />-->
     <v-main>
       <RouterView class="router-view" />
     </v-main>
@@ -8,7 +8,7 @@
 </template>
 
 <script setup>
-import NavbarComp from './components/NavbarComp.vue'
+// import NavbarComp from './components/NavbarComp.vue'
 import { RouterView } from 'vue-router'
 </script>
 

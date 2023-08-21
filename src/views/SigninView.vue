@@ -1,22 +1,21 @@
 <template>
   <div id="app">
     <div class="mainContainer">
-      <h1>Panou de Administrare</h1>
-      <h3>Compania de apă Arieș</h3>
+      <h1>Mobile Data Computer</h1>
       <form @submit.prevent="submit">
         <v-text-field
           class="email"
           v-model="email.value.value"
           :error-messages="email.errorMessage.value"
-          label="E-mail"
+          label="Badge Number"
           variant="outlined"
           bg-color="rgba(128, 152, 249, 0.1)"
           base-color="#0066FF"
           color="#0066FF"
           dark
-          autocomplete="username"
+          autocomplete="badgeNumber"
           required
-          prepend-icon="mdi-email"
+          prepend-icon="mdi-police-badge-outline"
         ></v-text-field>
         <v-text-field
           v-model="password.value.value"
@@ -24,7 +23,7 @@
           :append-icon="passwordVisibility ? 'mdi-eye' : 'mdi-eye-off'"
           :type="passwordVisibility ? 'text' : 'password'"
           prepend-icon="mdi-shield-off-outline"
-          label="Parolă"
+          label="Password"
           autocomplete="current-password"
           variant="outlined"
           bg-color="rgba(128, 152, 249, 0.1)"
@@ -37,16 +36,16 @@
         <div class="forgotPassword">
           <v-checkbox
             v-model="checkbox.value.value"
-            label="Rămâi conectat"
+            label="Stay connected"
             color="#0066FF"
             type="checkbox"
           ></v-checkbox>
-          <h2>Ți-ai uitat parola?</h2>
+          <h2>Forgot your password?</h2>
         </div>
         <div class="alertContainer" v-if="errMsg">
           <v-alert type="error" variant="tonal">{{ errMsg }}</v-alert>
         </div>
-        <v-btn variant="elevated" color="#0066FF" type="submit"> Conectare </v-btn>
+        <v-btn variant="elevated" color="#0066FF" type="submit"> Connect </v-btn>
       </form>
     </div>
   </div>
@@ -60,17 +59,17 @@ import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
-const { handleSubmit, handleReset } = useForm({
+const { handleSubmit} = useForm({
   validationSchema: {
     email(value) {
-      if (/^[a-z.-]+@[a-z.-]+\.[a-z]+$/i.test(value)) return true
+      if (/^\d{5}$/.test(value)) return true;
 
-      return 'Email-ul trebuie să fie valid.'
+      return 'The Badge Number must only contain 5 numbers.';
     },
     password(value) {
       if (value?.length >= 4) return true
 
-      return 'Parola trebuie să conțină cel putin 4 caractere.'
+      return 'The password must be atlest 4 characters long.'
     }
   }
 })
@@ -86,13 +85,12 @@ const togglePasswordVisibility = () => {
 
 const submit = handleSubmit((values) => {
   let checkbox
-  if (!values.checkbox || values.checkbox == false) checkbox = false
-  else checkbox = true
+  checkbox = !(!values.checkbox || values.checkbox === false);
   const options = {
     method: 'POST',
     url: `${import.meta.env.VITE_BASEURL}/auth/signin`,
     headers: { 'Content-Type': 'application/json' },
-    data: { email: values.email, password: values.password, stayConnected: checkbox }
+    data: { badgeNumber: values.email, password: values.password, stayConnected: checkbox }
   }
 
   axios

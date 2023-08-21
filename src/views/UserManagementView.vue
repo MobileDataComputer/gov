@@ -1,6 +1,5 @@
 <template>
   <div>
-    <TitleComp title="Administrare Utilizatori" />
     <v-data-table
       :headers="headers"
       :items="items"
@@ -108,7 +107,6 @@
 </template>
 
 <script setup>
-import TitleComp from '@/components/TitleComp.vue'
 import { onMounted, ref } from 'vue'
 import axios from 'axios'
 

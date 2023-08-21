@@ -10,8 +10,6 @@ import vuetify from './plugins/vueitfy'
 import Highcharts from 'highcharts'
 import HighChartsVue from 'highcharts-vue'
 import boost from "highcharts/modules/boost";
-import 'mapbox-gl/dist/mapbox-gl.css'
-import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css'
 
 const app = createApp(App)
 
